@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
-import {fetchtoCart, removeItem} from "../../Redux/product/action";
+import { removeItem} from "../../Redux/product/action";
 import { Box, Button, Flex, Heading, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import Topnavbar from "../Navbar/Topnavbar";
 import { CloseIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 function Cart(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
