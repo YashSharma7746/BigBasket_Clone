@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+
 import './App.css';
 import AllRoutes from './Components/AllRoutes';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{justifyContent:"center",alignItems:"center"}}>
       <AllRoutes/>
     </div>
   );

@@ -51,8 +51,8 @@ function LogedIn(){
             horizontal: "left"
           }}
         >
-          <PopoverContent
-            style={{ marginLeft: "180%", marginTop: "10%", padding: "3rem" }}
+          <PopoverContent marginLeft={{base:"auto",sm:"12rem",md:"20rem",lg:"24rem","2xl":"35rem"}}
+            style={{ marginTop: "10%", padding: "3rem" }}
           >
             <Text>Enter Mobile Number</Text>
             <Input placeholder="Enter Number" mt="15px" />

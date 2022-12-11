@@ -7,7 +7,7 @@ function CartLength(){
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(fetchtoCart());
-    },[])
+    },[dispatch])
     return <Box>
         <Text>{cart.length}</Text>
     </Box>

@@ -1,16 +1,11 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
-import { useState } from "react";
 import {useDispatch} from "react-redux";
 import {addtoCart} from "../../Redux/product/action"
-function DemoDiv({ image, brand, title, qunty, price}) {
+function DemoDiv({ props}) {
     const dispatch = useDispatch();
     const handleCart = () => {
-        const demoData = {
-            brand:brand,
-            title:title,
-            price:price            
-        }
-        dispatch(addtoCart(demoData));
+      console.log(props);
+        dispatch(addtoCart(props));
       };
       //console.log(props);
   return (
@@ -20,13 +15,14 @@ function DemoDiv({ image, brand, title, qunty, price}) {
         cursor="pointer"
         boxShadow="rgba(0, 0, 0, 0.15) 0px 5px 15px"
         mt="1rem"
-        w="19%"
         p="15px"
         rounded="md"
         textAlign="center"
+        justifyContent={"center"}
+        alignItems="center"
       >
         <Box>
-          <Image ml="1.8rem"  src={image} />
+          <Image ml="auto" mr="auto"  src={props.image} />
           <Image
             src="https://www.bbassets.com/static/v2608/custPage/build/content/img/vegicon.svg"
             float="left"
@@ -35,15 +31,15 @@ function DemoDiv({ image, brand, title, qunty, price}) {
           />
           <br />
           <Text fontSize="small" float="left">
-            {brand}
+            {props.brand}
           </Text>
         </Box>
         <br />
         <Box>
-          <Text>{title}</Text>
+          <Text>{props.title}</Text>
         </Box>
-        <Box>Qnty:- {qunty}</Box>
-        <Box>Rs. {price}</Box>
+        <Box>Qnty:- {props.qunty}</Box>
+        <Box>Rs. {props.price}</Box>
         <Box
           display="flex"
           justifyContent="center"

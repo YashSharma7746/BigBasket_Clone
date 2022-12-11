@@ -1,8 +1,9 @@
 import Topnavbar from "../Navbar/Topnavbar";
 import TopAdvt from "./TopAdvt";
-import { Link, Flex, Stack, Box, Button, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
+import { Link, Flex, Stack, Box, Button, Grid, GridItem, Heading, Image, Text, SimpleGrid } from "@chakra-ui/react";
 import DemoDiv from "./DemoDiv";
 import "./style.css";
+import uuid from "react-uuid";
 import {
     TiSocialFacebook,
     TiSocialPinterest,
@@ -12,6 +13,7 @@ import {
   
 const SmartBasket = [
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/10000069_20-fresho-capsicum-green.jpg",
       title: "Capsicum - Green (Loose)",
@@ -20,6 +22,7 @@ const SmartBasket = [
       brand:"Fresho"
     },
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/10000071_14-fresho-carrot-orange.jpg",
       title: "Carrot - Orange (Loose)",
@@ -28,6 +31,7 @@ const SmartBasket = [
       brand:"Fresho"
     },
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/10000097_19-fresho-coriander-leaves.jpg",
       title: "Coriander Leaves",
@@ -36,6 +40,7 @@ const SmartBasket = [
       brand:"Fresho"
     },
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/10000102_17-fresho-cucumber.jpg",
       title: "Cucumber (Loose)",
@@ -44,6 +49,7 @@ const SmartBasket = [
       brand:"Fresho"
     },
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/10000144_13-fresho-ladies-finger.jpg",
       title: "Ladies' Fingers (Loose)",
@@ -72,6 +78,7 @@ const SmartBasket = [
   ]
   const BestSellers = [
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/271205_14-id-fresho-idly-dosa-batter.jpg",
       title: "Idly & Dosa Batter",
@@ -79,6 +86,7 @@ const SmartBasket = [
       qunty:"1 KG"
     },
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/40158282_10-dove-cream-beauty-bathing-bar.jpg",
       title: "Cream Beauty Bathing Bar - For Soft, Smooth Skin",
@@ -86,6 +94,7 @@ const SmartBasket = [
       qunty:"100 g (Pack of 8)"
     },
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/10000200_17-fresho-tomato-hybrid.jpg",
       title: "Tomato - Hybrid (Loose)",
@@ -93,6 +102,7 @@ const SmartBasket = [
       qunty:"1 KG"
     },
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/40216129_10-fresho-tender-coconut-water-no-added-sugar-flavours.jpg",
       title: "Tender Coconut Water - No Added Sugar, Flavours",
@@ -100,6 +110,7 @@ const SmartBasket = [
       qunty:"200 ml Bottle"
     },
     {
+      id:uuid(),
       image:
         "https://www.bigbasket.com/media/uploads/p/s/10000404_18-bb-royal-rice-raw-sona-masoori-12-17-months-old.jpg",
       title: "Rice/Akki - Raw, Sona Masoori, 12-17 Months Old",
@@ -172,7 +183,7 @@ const SmartBasket = [
   
 function Home(){
     return (
-        <Box width="100%" margin={"auto"}>
+        <Box width="100%" margin={"auto"} justifyContent={"center"}>
             <Topnavbar/>
             <Box w="100%" m="auto">
                 <TopAdvt/>
@@ -191,11 +202,11 @@ function Home(){
                 >
                     My Smart Basket
                 </Heading>
-                <Box w="80%" m="auto" display="flex" justifyContent="space-between">
+                <SimpleGrid w="80%" columns={{ base: 1, sm: 2, md:3, lg: 4, "2xl": 5 }} m="auto" gap="15px">
                     {SmartBasket.map((item) => {
-                        return <DemoDiv key={item.title} {...item} />;
+                        return <DemoDiv key={item.id} props={item} />;
                     })}
-                </Box>
+                </SimpleGrid>
             </Box>
             <Box>
                 <Heading
@@ -211,7 +222,7 @@ function Home(){
                 >
                     Bank Offers
                 </Heading>
-                <Box w="80%" m="auto" display="flex" justifyContent="space-between">
+                <SimpleGrid w="80%" m="auto" columns={{base:1, sm:2, md:2, lg:4, "2xl":4}}>
                 {BankOffers.map((item) => {
                     //console.log(item);
                     return (
@@ -219,12 +230,12 @@ function Home(){
                         className="hoverBox"
                         cursor="pointer"
                         key={item.image}
-                        w="24%"
+                        w="90%"
                         src={item.image}
                     />
                     );
                 })}
-                </Box>
+                </SimpleGrid>
             </Box>
             <Box>
                 <Heading
@@ -240,11 +251,11 @@ function Home(){
                 >
                     Best Sellers
                 </Heading>
-                <Box w="80%" m="auto" display="flex" justifyContent="space-between">
+                <SimpleGrid w="80%" columns={{ base: 1, sm: 2, md:3, lg: 4, "2xl": 5 }} m="auto" gap="15px">
                     {BestSellers.map((item) => {
-                        return <DemoDiv key={item.title} {...item} />;
+                        return <DemoDiv key={item.id} props={item} />;
                     })}
-                </Box>
+                </SimpleGrid>
             </Box>
             <Box>
                 <Heading
@@ -260,21 +271,21 @@ function Home(){
                 >
                     Top Offers
                 </Heading>
-                <Box w="80%" m="auto" display="flex" justifyContent="space-between">
-                    {TopOffers.map((item) => {
+                <SimpleGrid w="80%" m="auto" columns={{base:1, sm:2, md:2, lg:4, "2xl":4}}>
+                {TopOffers.map((item) => {
                     //console.log(item);
                     return (
-                        <Image
-                            className="hoverBox"
-                            boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
-                            cursor="pointer"
-                            key={item.image}
-                            w="24%"
-                            src={item.image}
-                        />
-                        );
-                    })}
-                </Box>
+                    <Image
+                        boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
+                        cursor="pointer"
+                        className="hoverBox"
+                        key={item.image}
+                        w="90%"
+                        src={item.image}
+                    />
+                    );
+                })}
+                </SimpleGrid>
             </Box>
             <Box>
               <Heading
@@ -290,7 +301,7 @@ function Home(){
             >
                 Furits & Vegetables
             </Heading>
-            <Box w="80%" m="auto" display="flex" justifyContent="space-between">
+            <SimpleGrid w="80%" m="auto" columns={{base:1,sm:2,md:3,lg:6,"2xl":6}} gap="20px">
                 {FruitsVegies.map((item) => {
                     //console.log(item);
                     return (
@@ -299,12 +310,12 @@ function Home(){
                         boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                         cursor="pointer"
                         key={item.image}
-                        w="15%"
+                        w="90%"
                         src={item.image}
                     />
                         );
                     })}
-                </Box>
+                </SimpleGrid>
             </Box>
             <Heading
                 textAlign="center"
@@ -319,15 +330,14 @@ function Home(){
             >
                 Beverages
             </Heading>
-            <Grid
+            <SimpleGrid
                 w="80%"
                 m="auto"
                 mt="2.5rem"
-                templateRows="repeat(2, 1fr)"
-                templateColumns="repeat(4, 1fr)"
-                gap="1rem"
+                columns={{base:1,sm:2,md:3,lg:5,"2xl":5}}
+                gap="15px"
             >
-                <GridItem rowSpan={2} colSpan={2}>
+                <GridItem >
                     <Image
                         cursor="pointer"
                         w="100%"
@@ -336,7 +346,7 @@ function Home(){
                         boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                     />
                 </GridItem>
-                <GridItem colSpan={1} rowSpan={1}>
+                <GridItem>
                     <Image
                         cursor="pointer"
                         h="100%"
@@ -345,7 +355,7 @@ function Home(){
                         boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                     />
                 </GridItem>
-                <GridItem colSpan={1} rowSpan={1}>
+                <GridItem>
                     <Image
                         cursor="pointer"
                         h="100%"
@@ -354,7 +364,7 @@ function Home(){
                         boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                     />
                 </GridItem>
-                <GridItem colSpan={1} rowSpan={1}>
+                <GridItem>
                     <Image
                         cursor="pointer"
                         w="100%"
@@ -363,7 +373,7 @@ function Home(){
                         boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                     />
                 </GridItem>
-                <GridItem colSpan={1} rowSpan={1}>
+                <GridItem>
                     <Image
                         cursor="pointer"
                         w="100%"
@@ -372,7 +382,7 @@ function Home(){
                         boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                     />
                 </GridItem>
-            </Grid>
+            </SimpleGrid>
             <Box>
                 <Heading
                     textAlign="center"
@@ -387,21 +397,21 @@ function Home(){
                 >
                     Cleaning & Household
                 </Heading>
-                <Box w="80%" m="auto" display="flex" justifyContent="space-between">
+                <SimpleGrid w="80%" m="auto" columns={{base:1,sm:2,md:2,lg:4,"2xl":4}} gap="15px">
                     {CleaningHousehold.map((item) => {
                         //console.log(item);
                         return (
                             <Image
                                 boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                                 className="hoverBox"
-                                cursor="pointer"
+                                cursor="pointer" ml="auto" mr="auto"
                                 key={item.image}
-                                w="24%"
+                                w="90%"
                                 src={item.image}
                             />
                         );
                     })}
-                </Box>
+                </SimpleGrid>
                 <Box
         textAlign={"left"}
         width={"75%"}

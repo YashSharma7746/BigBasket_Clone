@@ -5,9 +5,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const GET_SINGLE_PRODUCT = "GET_SINGLE_PRODUCT";
 export const REMOVE_TO_CART = "REMOVE_TO_CART";
 export const SET_ORDER = "SET_ORDER";
-// export const DELETE_CART = "DELETE_CART";
 export const FETCH_TO_CART = "FETCH_TO_CART";
-// export const REMOVE_ITEME = "REMOVE_ITEME";
 export const fetchDataAction = (data) => {
   return {
     type: FETCH_DATA,
@@ -54,15 +52,15 @@ export const addtocartaction = (data) => ({
 });
 
 export const addtoCart = (product) => (dispatch) => {
-  axios
-    .post("https://rbigbasket.herokuapp.com/vegetablecart", product)
+   axios
+    .post("https://rune-veil-mantis.glitch.me/cart", product)
     .then((res) => {
       console.log("add", res.data);
       dispatch(addtocartaction(res.data));
     })
     .catch((e) => {
       console.log(e);
-    });
+    }); 
 };
 
 export const fetchcartaction = (data) => ({
@@ -72,7 +70,7 @@ export const fetchcartaction = (data) => ({
 
 export const fetchtoCart = () => (dispatch) => {
   axios
-    .get("https://rbigbasket.herokuapp.com/vegetablecart")
+    .get("https://rune-veil-mantis.glitch.me/cart")
     .then((res) => {
       // console.log("get", res.data);
       dispatch(fetchcartaction(res.data));
@@ -91,17 +89,17 @@ export const removeItemAction = (data) => {
 
 export const removeItem = (id) => (dispatch) => {
   axios
-    .delete(`https://rbigbasket.herokuapp.com/vegetablecart/${id}`)
+    .delete(`https://rune-veil-mantis.glitch.me/cart/${id}`)
     .then((res) => {
       // console.log(res.data);
       dispatch(removeItemAction(res.data));
     })
-    .then((r) => {
-      dispatch(fetchtoCart());
-    })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally((r) => {
+      dispatch(fetchtoCart());
+    })
 };
 
 export const setorderaction = (data) => ({

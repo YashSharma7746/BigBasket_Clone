@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import {PhoneIcon, SearchIcon, ChevronDownIcon} from "@chakra-ui/icons";
 import {ImLocation2} from "react-icons/im";
 import {AiOutlineUser} from "react-icons/ai";
-import {BsBasket3} from "react-icons/bs";
 import styles from "./navbar.module.css";
 import CartLength from "../CartLength";
 import LogedIn from "../Login/LogedIn";
@@ -21,15 +20,15 @@ function Topnavbar(){
                         </Link>
                     </Box>
                     <Box width={"78%"} ml="2rem">
-                        <Box width={'100%'} float="right">
-                            <Flex float={"right"} width="100%" padding={"0.25rem 0 0 0"} fontWeight="400" fontSize="14px" alignItems={"center"} justifyContent="flex-end">
-                                <Box mr={"1rem"}>
+                        <Box width={'100%'}>
+                            <Box display={"flex"} width="100%" padding={"0.25rem 0 0 0"} fontSize="14px" alignItems={"center"} justifyContent="flex-end">
+                                <Box mr={"10px"}>
                                     <Flex alignItems={"center"}>
                                         <PhoneIcon mr={"0.5rem"} />
                                         <Text>1860 123 1000</Text>
                                     </Flex>
                                 </Box>
-                                <Box mr={"1rem"}>
+                                <Box mr={"10px"}>
                                     <Flex alignItems={"center"}>
                                         <Box mr={"0.5rem"}>
                                             <ImLocation2 size="16px" />
@@ -47,13 +46,13 @@ function Topnavbar(){
                                         </Box>
                                     </Flex>
                                 </Box>
-                            </Flex>
+                            </Box>
                         </Box>
                         <Box mt="2rem">
-                            <Flex width={"100%"} justifyContent={"space-between"}>
+                            <Flex width={{base:"100%",sm:"90%",md:"100%","2xl":"100%"}} justifyContent={"space-between"}>
                                 <Flex width={"65%"} alignItems="center">
                                     <Input
-                                        height={"1.5rem"}
+                                        height={"2.5rem"}
                                         type="text"
                                         colorScheme="white"
                                         variant="outline"
@@ -74,7 +73,7 @@ function Topnavbar(){
                                         errorBorderColor="#84c225"
                                         borderRadius="0"
                                         borderWidth="1px"
-                                        height={"1.6rem"}
+                                        height={"2.6rem"}
                                         bg="#84c225"
                                         color="white"
                                         padding={"2.5px"}
@@ -84,10 +83,10 @@ function Topnavbar(){
                                     </Button>
                                 </Flex>
                                 <Flex
-                                width="16%"
                                 // justifyContent={"space-between"}
                                 bg={" #e8e8e8"}
-                                height={"60px"}
+                                w={{base:"120px",sm:"110px",md:"120px",lg:"140px","2xl":"160px"}}
+                                height={"60px"} p="10px"
                                 onClick={() => {
                                     navigate("/cart");
                                 }}
@@ -115,10 +114,10 @@ function Topnavbar(){
                         </Box>
                     </Box>
                 </Box>
-                <Box borderWidth="1px" overflow="hidden">
+                <Box borderWidth="1px" overflow="hidden" className="xaayz">
                     <Flex alignItems={"center"}>
                         <Box>
-                            <Menu border={"1px solid green"} width={"100%"} isOpen={isOpen}>
+                            <Menu border={"1px solid green"} width={{ sm: "50%", md:"80%", lg: "100%", "2xl": "100%" }} isOpen={isOpen}>
                                 <Box>
                                     <MenuButton
                                         onMouseEnter={onOpen}
@@ -143,8 +142,11 @@ function Topnavbar(){
                                     </MenuButton>
                                     <Flex>
                                         <MenuList
+                                        border="3px solid orange"
                                         bg={"white"}
-                                        width={"1080px"}
+                                        width={"75%"}
+                                        ml="auto"
+                                        mr="auto"
                                         fontSize="14px"
                                         fontWeight={"300"}
                                         borderRadius={0}
@@ -192,6 +194,7 @@ function Topnavbar(){
                                                         View All
                                                     </MenuItem>
                                                 </div>
+                            
                                                 <div className={styles.bg_grey}>
                                                 <MenuItem>Fresh Vegitables</MenuItem>
                                                 <MenuItem>Herbs & Seasonings</MenuItem>
@@ -211,22 +214,7 @@ function Topnavbar(){
                                                 <MenuItem>Gourd, Pumpkin, Drumstic</MenuItem>
                                                 <MenuItem>Specialty</MenuItem>
                                                 </div>
-                                                <div className={styles.fs12}>
-                                                    <MenuItem
-                                                        fontSize={"16"}
-                                                        fontWeight={300}
-                                                        color={"#84c225"}
-                                                    >
-                                                        Popular Searches
-                                                    </MenuItem>
-                                                    <MenuItem>Vegetables</MenuItem>
-                                                    <MenuItem>Tomato</MenuItem>
-                                                    <MenuItem>Onion</MenuItem>
-                                                    <MenuItem>Potato</MenuItem>
-                                                    <MenuItem>Vegitable</MenuItem>
-                                                    <MenuItem>Carrat</MenuItem>
-                                                </div>
-                                            </Flex>
+                                           </Flex>
                                         </MenuList>
                                     </Flex>
                                 </Box>

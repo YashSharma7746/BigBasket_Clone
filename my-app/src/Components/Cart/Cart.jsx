@@ -9,17 +9,14 @@ function Cart(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.products.cart);
-    console.log(cart);
-    useEffect(() => {
-      dispatch(fetchtoCart());
-    }, [dispatch, cart.length]);
+    //console.log(cart);
     const handleDelet = (id) => {
       dispatch(removeItem(id));
     };
     let saved = 0;
     const [x, setX] = useState(1);
   
-    const total = cart.reduce(function (acc, cv) {
+    const total = cart &&  cart.reduce(function (acc, cv) {
       return acc + Math.floor(cv.price);
     }, 0);
     return (
@@ -41,7 +38,7 @@ function Cart(){
               borderBottom={"1px solid #e8e8e8"}
               pb={"6px"}
             >
-              YOUR BASKET {cart.length}
+              YOUR BASKET {cart && cart.length}
             </Text>
             <TableContainer width="99%">
               <Table variant="simple">
@@ -62,7 +59,7 @@ function Cart(){
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {cart.map((e) => {
+                  {cart && cart.map((e) => {
                     {
                       saved =
                         saved +
@@ -72,7 +69,7 @@ function Cart(){
                     }
                     return (
                       <Tr
-                        key={e._id}
+                        key={e.id}
                         fontSize={"12px"}
                         justifyContent={"space-between"}
                       >
