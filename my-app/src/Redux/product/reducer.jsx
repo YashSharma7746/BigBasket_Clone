@@ -15,18 +15,6 @@ import {
   };
 const productReducer = (state = initState, action) => {
     switch (action.type) {
-      case FETCH_DATA: {
-        return {
-          ...state,
-          product: action.payload
-        };
-      }
-      case GET_SINGLE_PRODUCT: {
-        return {
-          ...state,
-          currentProduct: action.payload
-        };
-      }
       case ADD_TO_CART: {
         return {
           ...state,
@@ -43,12 +31,6 @@ const productReducer = (state = initState, action) => {
         return {
           ...state,
           cart: [action.payload]
-        };
-      }
-      case SET_ORDER: {
-        return {
-          ...state,
-          order: [...state.order, action.payload]
         };
       }
       default:

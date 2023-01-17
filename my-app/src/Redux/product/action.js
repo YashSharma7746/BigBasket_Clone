@@ -1,50 +1,10 @@
 import axios from "axios";
 
-export const FETCH_DATA = "FETCH_DATA";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const GET_SINGLE_PRODUCT = "GET_SINGLE_PRODUCT";
 export const REMOVE_TO_CART = "REMOVE_TO_CART";
 export const SET_ORDER = "SET_ORDER";
 export const FETCH_TO_CART = "FETCH_TO_CART";
-export const fetchDataAction = (data) => {
-  return {
-    type: FETCH_DATA,
-    payload: data
-  };
-};
-
-export const fetchData = (payload) => async (dispatch) => {
-  //console.log(payload, "pay");
-  return axios
-    .get("https://rbigbasket.herokuapp.com/vegetables", {
-      params: {
-        ...payload
-      }
-    })
-    .then((res) => {
-      // console.log("..res..", res.data);
-      dispatch(fetchDataAction(res.data));
-    })
-    .catch((e) => console.log("UU", e));
-};
-
-export const getSingleProductAction = (payload) => {
-  return {
-    type: GET_SINGLE_PRODUCT,
-    payload
-  };
-};
-
-export const getSingleProduct = (id) => (dispatch) => {
-  // console.log(id)
-  return axios
-    .get(`https://rbigbasket.herokuapp.com/vegetables/${id}`)
-    .then((res) => {
-      // console.log("...single..res...",res.data);
-      dispatch(getSingleProductAction(res.data));
-    })
-    .catch((e) => console.log("ERRooo", e));
-};
 
 export const addtocartaction = (data) => ({
   type: ADD_TO_CART,
@@ -102,20 +62,3 @@ export const removeItem = (id) => (dispatch) => {
     })
 };
 
-export const setorderaction = (data) => ({
-  type: SET_ORDER,
-  payload: data
-});
-
-export const addOrder = (product) => (dispatch) => {
-  console.log("DAAA", product);
-  axios
-    .post("https://rbigbasket.herokuapp.com/rasor", product)
-    .then((res) => {
-      console.log("....add...", res);
-      dispatch(setorderaction(res.data));
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-};
